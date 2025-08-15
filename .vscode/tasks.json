@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "/bin/zsh",
+      "args": ["-lc", "mkdir -p build && gfortran -std=f2008 -Wall -Wextra -O2 -g -o build/app src/*.f90"],
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "build:debug",
+      "type": "shell",
+      "command": "/bin/zsh",
+      "args": ["-lc", "mkdir -p build && gfortran -std=f2008 -Wall -Wextra -O0 -g -o build/app src/*.f90"],
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "run",
+      "type": "shell",
+      "command": "/bin/zsh",
+      "args": ["-lc", "./build/app"],
+      "dependsOn": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "run:args",
+      "type": "shell",
+      "command": "/bin/zsh",
+      "args": ["-lc", "./build/app 10 20"],
+      "dependsOn": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "build+run",
+      "type": "shell",
+      "command": "/bin/zsh",
+      "args": ["-lc", "mkdir -p build && gfortran -std=f2008 -Wall -Wextra -O2 -g -o build/app src/*.f90 && ./build/app"],
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": []
+    }
+  ]
+}
